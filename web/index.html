@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A cricket scoring application">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="cricket_scoring_app">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <!-- Fix the Google Sign-In configuration -->
+  <meta name="google-signin-client_id" content="1085363878255-k8lfu8ovush4t9u1mu6i31tbl0aeotab.apps.googleusercontent.com">
+  <script>
+    window.gapiOnloadCallback = function() {
+      try {
+        gapi.load('auth2', function() {
+          // Initialize the auth2 library
+          gapi.auth2.init({
+            client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com'
+          }).then(function() {
+            console.log('Auth2 initialized');
+          }, function(error) {
+            console.error('Auth2 error', error);
+          });
+        });
+      } catch (e) {
+        console.error('GAPI load error:', e);
+      }
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=gapiOnloadCallback" async defer></script>
+
+  <title>Cricket Scoring App</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    var serviceWorkerVersion = null;
+  </script>
+  <script src="flutter.js" defer></script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
